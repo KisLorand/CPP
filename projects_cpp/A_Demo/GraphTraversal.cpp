@@ -22,7 +22,6 @@ void printGraph(const graphMap_t &graphMap);
 int main()
 {
     Graph *pGraph = new Graph(6, 3);
-    std::cout << &pGraph << std::endl;
 
     graphMap_t graphMap = createAdjacencyList(*pGraph);
     printGraph_withIterator(graphMap);
@@ -49,7 +48,6 @@ int main()
 
 graphMap_t createAdjacencyList(Graph &pGraph)
 {
-    std::cout << &pGraph << std::endl;
     graphMap_t graphMap;
     Graph graph_22 = pGraph;
     for (GraphNode node : graph_22.nodes)
