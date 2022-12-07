@@ -33,13 +33,13 @@ int main()
     std::string sourceNode = "2";
     std::unordered_set<std::string> visited = {sourceNode};
 
-    std::cout << "\nIterative Depth First Search : \n";
+    std::cout << "\n\nIterative Depth First Search : \n";
     traversal_depthFirst_Iterative(graphMap, sourceNode);
 
-    std::cout << "\nRecursive Depth First Search : \n";
+    std::cout << "\n\nRecursive Depth First Search : \n";
     traversal_depthFirst_Recursive(graphMap, sourceNode, visited);
 
-    std::cout << "\nIterative Breadth First Search : \n";
+    std::cout << "\n\nIterative Breadth First Search : \n";
     traversal_breathFirst(graphMap, sourceNode);
 
     delete &visited;
