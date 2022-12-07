@@ -9,11 +9,11 @@
 
 using graphMap_t = std::map<std::string, std::vector<std::string>>;
 
-graphMap_t createAdjacencyList(Graph pGraph);
+graphMap_t createAdjacencyList(Graph &pGraph);
 
-void traversal_depthFirst_Iterative(graphMap_t graph, std::string sourceNode);
+void traversal_depthFirst_Iterative(graphMap_t &graph, std::string sourceNode);
 void traversal_depthFirst_Recursive(graphMap_t &graph, std::string sourceNode, std::unordered_set<std::string> &visited);
-void traversal_breathFirst(graphMap_t graph, std::string sourceNode);
+void traversal_breathFirst(graphMap_t &graph, std::string sourceNode);
 
 void printGraph_withIterator(const graphMap_t &graphMap);
 void printGraph(const graphMap_t &graphMap);
@@ -22,6 +22,7 @@ void printGraph(const graphMap_t &graphMap);
 int main()
 {
     Graph *pGraph = new Graph(6, 3);
+    std::cout << &pGraph << std::endl;
 
     graphMap_t graphMap = createAdjacencyList(*pGraph);
     printGraph_withIterator(graphMap);
@@ -46,8 +47,9 @@ int main()
     return 0;
 }
 
-graphMap_t createAdjacencyList(Graph pGraph)
+graphMap_t createAdjacencyList(Graph &pGraph)
 {
+    std::cout << &pGraph << std::endl;
     graphMap_t graphMap;
     Graph graph_22 = pGraph;
     for (GraphNode node : graph_22.nodes)
@@ -62,7 +64,7 @@ graphMap_t createAdjacencyList(Graph pGraph)
     return graphMap;
 }
 
-void traversal_depthFirst_Iterative(graphMap_t graph, std::string sourceNode)
+void traversal_depthFirst_Iterative(graphMap_t &graph, std::string sourceNode)
 {
     std::stack<std::string> stack;
     std::unordered_set<std::string> visited;
@@ -119,7 +121,7 @@ void traversal_depthFirst_Recursive(graphMap_t &graph, std::string sourceNode, s
     }
 };
 
-void traversal_breathFirst(graphMap_t graph, std::string sourceNode)
+void traversal_breathFirst(graphMap_t &graph, std::string sourceNode)
 {
     std::queue<std::string> queue;
     std::unordered_set<std::string> visited;
@@ -138,7 +140,7 @@ void traversal_breathFirst(graphMap_t graph, std::string sourceNode)
         {
             if (visited.find(neighbour) == visited.end())
             {
-                visited.insert(neighbour);
+                visited.insert(neighbour); // adding the neighbours before visiting them, to stop them to be visited multiple times
                 queue.push(neighbour);
 
                 std::cout << "\nVisited : ";
