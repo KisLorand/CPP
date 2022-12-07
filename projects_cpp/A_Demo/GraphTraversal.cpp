@@ -30,8 +30,8 @@ int main()
     delete pGraph;
 
 
-    std::unordered_set<std::string> visited = {};
     std::string sourceNode = "2";
+    std::unordered_set<std::string> visited = {sourceNode};
 
     std::cout << "\nIterative Depth First Search : \n";
     traversal_depthFirst_Iterative(graphMap, sourceNode);
@@ -101,7 +101,7 @@ void traversal_depthFirst_Iterative(graphMap_t &graph, std::string sourceNode)
 void traversal_depthFirst_Recursive(graphMap_t &graph, std::string sourceNode, std::unordered_set<std::string> &visited)
 {
     std::cout << "graph: " << &graph << '\n';
-    std::cout << sourceNode << '\n';
+    std::cout << "Current node : " << sourceNode << '\n';
 
     for (auto neighbour : graph[sourceNode])
     {
