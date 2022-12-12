@@ -30,8 +30,8 @@ class GraphNode
         ~GraphNode()
         {
 /*             delete &value;
-            delete &neighbours;
-            std::cout << "Node destructed" << std::endl; */
+            delete &neighbours; */
+            std::cout << "Node destructed" << std::endl;
         }
 };
 
@@ -69,12 +69,17 @@ class Graph
 
         ~Graph()
         {
-/*             for (GraphNode node : nodes)
+            /*            for (GraphNode* pNode : nodeptrs)
+            {
+                delete pNode;
+            }
+
+            for (GraphNode node : nodes)
             {
                 delete &node;
             }
             delete &nodes; */
-            std::cout << "Graph destructor" << std::endl;
+            std::cout << "\nGraph destructor" << std::endl;
         }
 
         void addNode()
@@ -103,13 +108,12 @@ int main()
 {
     Graph *pGraph = new Graph(6, 3);
 
-    //std::cout << "ssss  " << (*pGraph).nodes[0].value << std::endl;
+    std::cout << "ssss  " << (*pGraph).nodes[0].value << std::endl;
 
     graphMap_t graphMap = createAdjacencyList(*pGraph);
     printGraph_withIterator(graphMap);
 
     delete pGraph;
-    //std::cout << "ssss  " << (*pGraph).nodes[0].value << std::endl;
 
     std::string sourceNode = "2";
     std::unordered_set<std::string> visited = {sourceNode};
@@ -237,7 +241,6 @@ void traversal_breathFirst(graphMap_t &graph, std::string sourceNode)
 void printGraph_withIterator(const graphMap_t &graphMap)
 {
     graphMap_t::iterator it;
-
     for (auto it = graphMap.begin(); it != graphMap.end(); it++)
     {
         std::cout << it->first << " : ";
