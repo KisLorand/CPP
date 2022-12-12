@@ -1,3 +1,4 @@
+#include <iostream>
 #include <string>
 #include <vector>
 
@@ -19,8 +20,9 @@ struct GraphNode
 
         ~GraphNode()
         {
-           /*  delete value;
-            delete neighbours; */
+/*             delete &value;
+            delete &neighbours;
+            std::cout << "Node destructed" << std::endl; */
         }
 };
 
@@ -47,6 +49,15 @@ class Graph
             {
                 nodes[j].neighbours.push_back(nodes[j+2]);
             }
+        }
+
+        ~Graph()
+        {
+/*             for (GraphNode node : nodes)
+            {
+                delete &node;
+            } */
+            delete &nodes;
         }
 
         void addNode()
