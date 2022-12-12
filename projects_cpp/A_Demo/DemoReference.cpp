@@ -2,10 +2,11 @@
 
 int main()
 {
-    int value = 7;
-    int* address = &value;
+    int count = 7;
+    int* pCount = &count;
 
-    std::cout << address << std::endl;
+    std::cout << &count << std::endl;
+    std::cout << pCount << "   " << &pCount << std::endl;
 
     return 0;
 }
