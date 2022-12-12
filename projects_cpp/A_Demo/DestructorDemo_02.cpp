@@ -10,13 +10,13 @@ class Number
             pValue = (int *) malloc(sizeof(int));
             *pValue = val;
             std::cout << "Number " << *pValue << " constructed." << std::endl; 
-            std::cout << "Number value address" << pValue << std::endl; 
+            std::cout << "Number value address " << pValue << std::endl; 
         }
 
         ~Number()
         {
             std::cout << "Number " << *pValue << " destructed." << std::endl; 
-            std::cout << "Number value address" << pValue << std::endl; 
+            std::cout << "Number value address " << pValue << std::endl; 
             free(pValue);
         }
 };
