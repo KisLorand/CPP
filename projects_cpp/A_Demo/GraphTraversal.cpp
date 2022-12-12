@@ -5,9 +5,89 @@
 #include <queue>
 #include <map>
 #include <unordered_set>
-#include "graph.h"
+#include <memory>
+//#include "graph.h"
 
 using graphMap_t = std::map<std::string, std::vector<std::string>>;
+
+
+class GraphNode
+{
+    public :
+        std::string value;
+        std::vector<GraphNode> neighbours;
+
+        GraphNode()
+        {
+
+        }
+
+        GraphNode(std::string value)
+        {
+            this->value = value;
+        }
+
+        ~GraphNode()
+        {
+/*             delete &value;
+            delete &neighbours;
+            std::cout << "Node destructed" << std::endl; */
+        }
+};
+
+class Graph
+{
+    public : 
+        std::vector<GraphNode> nodes;
+        std::vector<GraphNode*> nodeptrs;
+        //std::vector<std::shared_ptr<GraphNode>> nodes_ptr;//
+        //std::shared_ptr<GraphNode> nodes_ptr;//
+
+        Graph(int nodeCount, int edgeCount)
+        {
+            for (int i=0; i<nodeCount; ++i)
+            {
+                GraphNode* pNode = new GraphNode(std::to_string(i));
+                //GraphNode* node = new GraphNode(std::to_string(i));
+
+                nodeptrs.push_back(pNode);
+                nodes.push_back(*pNode);
+            }
+
+            //auto nodes_ptr = std::make_shared<GraphNode>(nodes[0]);
+
+            for (int j=0; j<nodes.size()-1; j++)
+            {
+                nodes[j].neighbours.push_back(nodes[j+1]);
+            }
+
+            for (int j=0; j<nodes.size()-2; j=j+2)
+            {
+                nodes[j].neighbours.push_back(nodes[j+2]);
+            }
+        }
+
+        ~Graph()
+        {
+/*             for (GraphNode node : nodes)
+            {
+                delete &node;
+            }
+            delete &nodes; */
+            std::cout << "Graph destructor" << std::endl;
+        }
+
+        void addNode()
+        {
+            
+        }
+
+        void connectNodes(GraphNode &nodeA, GraphNode &nodeB)
+        {
+            nodeA.neighbours.push_back(nodeB);
+            nodeB.neighbours.push_back(nodeA);
+        }
+};
 
 graphMap_t createAdjacencyList(Graph &pGraph);
 
@@ -23,11 +103,13 @@ int main()
 {
     Graph *pGraph = new Graph(6, 3);
 
+    //std::cout << "ssss  " << (*pGraph).nodes[0].value << std::endl;
+
     graphMap_t graphMap = createAdjacencyList(*pGraph);
     printGraph_withIterator(graphMap);
 
     delete pGraph;
-
+    //std::cout << "ssss  " << (*pGraph).nodes[0].value << std::endl;
 
     std::string sourceNode = "2";
     std::unordered_set<std::string> visited = {sourceNode};
@@ -172,3 +254,5 @@ void printGraph(const graphMap_t &graphMap)
 {
 
 }
+
+
