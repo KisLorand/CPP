@@ -3,6 +3,7 @@
 #define SimpleSocket_hpp
 
 #include <stdio.h>
+#include <sys/socket.h>
 
 namespace hde
 {
@@ -11,17 +12,9 @@ namespace hde
     private:
         /* data */
     public:
-        SimpleSocket(/* args */);
+        SimpleSocket(int domain, int service, int protocol);
         ~SimpleSocket();
     };
-    
-    SimpleSocket::SimpleSocket(/* args */)
-    {
-    }
-    
-    SimpleSocket::~SimpleSocket()
-    {
-    }
     
 } // namespace hde
 
