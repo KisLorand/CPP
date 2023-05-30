@@ -10,7 +10,7 @@ namespace hde
     class SimpleSocket
     {
     private:
-        /* data */
+        int connection;
     public:
         SimpleSocket(int domain, int service, int protocol);
         ~SimpleSocket();
