@@ -27,3 +27,18 @@ void hde::SimpleSocket::test_connection(int item_to_test)
         exit(EXIT_FAILURE);
     }
 }
+
+struct sockaddr_in hde::SimpleSocket::get_address()
+{
+    return address;
+}
+
+int hde::SimpleSocket::get_sock()
+{
+    return sock;
+}
+
+int hde::SimpleSocket::get_connection()
+{
+    return connection;
+}
