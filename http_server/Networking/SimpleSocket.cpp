@@ -8,7 +8,10 @@ hde::SimpleSocket::SimpleSocket::SimpleSocket(int domain, int service, int proto
     address.sin_addr.s_addr = htonl(interface); //your IP address, same type of conversion
 
     sock = socket(domain, service, protocol);
+    test_connection(sock);
+
     connection = establish_network_connection(sock, address);
+    test_connection(connection);
 }
     
 hde::SimpleSocket::~SimpleSocket()
