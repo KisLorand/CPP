@@ -16,15 +16,24 @@ namespace hde
         int sock;
         int connection;
     public:
-        SimpleSocket(int domain, int service, int protocol, int port, u_long interface);
+        SimpleSocket(
+            int domain, 
+            int service, 
+            int protocol, 
+            int port, 
+            u_long interface
+        );
         ~SimpleSocket();
 
         struct sockaddr_in get_address();
         int get_sock();
         int get_connection();
 
-        virtual int establish_network_connection(int sock, struct sockaddr_in address) = 0;
-        void test_connection(int);
+        void set_connection(int);
+
+        virtual int establish_network_connection(
+            int sock, struct sockaddr_in address) = 0;
+        void test_connection(int con);
 
     };
     
